@@ -1,0 +1,37 @@
+{
+  "song1": {
+    "song": "Skyline Pigeon",
+    "artist": "Elton John",
+    "genre": "Soft Rock, Pop",
+    "link": "https://www.youtube.com/watch?v=nPzlGklVNb0",
+    "id": 1
+  },
+  "song2": {
+    "song": "My Love",
+    "artist": "Paul McCartney and Wings",
+    "genre": "Pop, Soft Rock",
+    "link": "https://www.youtube.com/watch?v=6WufhhwpxZ0",
+    "id": 2
+  },
+  "song3": {
+    "song": "Way Down We Go",
+    "artist": "Kaleo",
+    "genre": "Blues Rock, Indie Rock",
+    "link": "https://www.youtube.com/watch?v=0-7IHOXkiV8",
+    "id": 3
+  },
+  "song4": {
+    "song": "Take Me to Your Heart",
+    "artist": "Michael Learns to Rock",
+    "genre": "Pop, Soft Rock",
+    "link": "https://www.youtube.com/watch?v=MZTyxVto6YA",
+    "id": 4
+  },
+  "song5": {
+    "song": "Lay All Your Love On Me",
+    "artist": "ABBA",
+    "genre": "Pop",
+    "link": "https://www.youtube.com/watch?v=L1SxOgEMJqs",
+    "id": 5
+  }
+}
