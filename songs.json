@@ -11,6 +11,12 @@
     "genre": "Pop, Soft Rock",
     "link": "https://www.youtube.com/watch?v=6WufhhwpxZ0"
   },
+  "song3": {
+    "song": "Way Down We Go",
+    "artist": "Kaleo",
+    "genre": "Blues Rock, Indie Rock",
+    "link": "https://www.youtube.com/watch?v=0-7IHOXkiV8"
+  },
   "song4": {
     "song": "Take Me to Your Heart",
     "artist": "Michael Learns to Rock",
@@ -22,6 +28,5 @@
     "artist": "ABBA",
     "genre": "Pop",
     "link": "https://www.youtube.com/watch?v=L1SxOgEMJqs"
-  },
-  "song6": {}
+  }
 }
