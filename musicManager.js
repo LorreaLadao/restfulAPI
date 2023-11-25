@@ -1,67 +1,65 @@
 var express = require('express');
 var app = express();
-var fs = require('fs');
-var bodyParser = require('body-parser');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-function readUsers() {
-  const data = fs.readFileSync(__dirname + '/songs.json', 'utf8');
-  return JSON.parse(data);
-}
-
-//GET
-app.get('/listSongs', function (req, res) {
-  const users = readUsers();
-  res.json(users);
-});
-
-//ADD 
-app.post('/addSong', function (req, res) {
-  fs.readFile(__dirname + "/songs.json", 'utf8', function (err, data) {
-    if (err) {
-      res.status(500).json({ error: 'Internal server error' });
-      return;
+var fs = require("fs");
+var song = {
+   "song6" : {
+      "Song" : "Careless Whisper",
+      "Artist" : "George Michael",
+      "Genre":"Pop & Soft Rock",
+      "Link":"https://www.youtube.com/watch?v=1m6en0SQNFs",
+      "id": 6
     }
-
-    const songs = JSON.parse(data);
-    const newSongId = "song" + (Object.keys(songs).length + 1);
-    const newSong = req.body;
-    songs[newSongId] = newSong;
-    fs.writeFile(__dirname + "/songs.json", JSON.stringify(songs, null, 2), function (err) {
-      if (err) {
-        res.status(500).json({ error: 'Internal server error' });
-      } else {
-        res.json(songs); 
-      }
+}
+//Show the list
+app.get('/listSongs', function (req, res) {
+   fs.readFile( __dirname + "/" + "songs.json", 'utf8', function (err, data) {
+      console.log( data );
+      res.end( data );
+   });
+})
+//Add Song
+app.post('/addSong', function (req, res) {
+    // First read existing songs.
+    fs.readFile( __dirname + "/" + "songs.json", 'utf8', function (err, data) {
+       data = JSON.parse( data );
+       data["song6"] = song["song6"];
+       console.log( data );
+       res.end( JSON.stringify(data));
     });
-  });
-});
-
-// SHOW
-app.get('/getSong/:id', function (req, res) {
-   const songs = readUsers();
-   const song = songs['song' + req.params.id]; 
-   res.json(song);
- });
- 
-
-// DELETE
+})
+//Show specific song
+app.get('/:id', function (req, res) {
+    // First read existing songs.
+    fs.readFile( __dirname + "/" + "songs.json", 'utf8', function (err, data) {
+       var songs = JSON.parse( data );
+       var song = songs["song" + req.params.id];
+       console.log( song );
+       res.end( JSON.stringify(song));
+    });
+})
+//Delete a Song
+app.delete('/deleteSong', function (req, res) {
+   // First read existing songs.
+   fs.readFile( __dirname + "/" + "songs.json", 'utf8', function (err, data) {
+      data = JSON.parse( data );
+      delete data["song5"];
+      console.log( data );
+      res.end( JSON.stringify(data));
+   });
+})
+//delete specific song
 app.delete('/deleteSong/:id', function (req, res) {
-  const songs = readUsers();
-  const songId = 'song' + req.params.id;
-
-  if (songs[songId]) {
-     delete songs[songId];
-     fs.writeFileSync(__dirname + '/songs.json', JSON.stringify(songs, null, 2));
-     res.json(songs);
-  } else {
-     res.status(404).json({ message: 'Song not found' });
-  }
-});
+    // First read existing songs.
+    fs.readFile( __dirname + "/" + "songs.json", 'utf8', function (err, data) {
+       data = JSON.parse( data );
+       delete data["song" + req.params.id];
+       console.log( data );
+       res.end( JSON.stringify(data));
+    });
+})
 
 var server = app.listen(8081, function () {
-  var host = server.address().address;
-  var port = server.address().port;
-  console.log('Example app listening at http://%s:%s', host, port);
-});
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log("Song app listening at http://%s:%s", host, port);
+})
